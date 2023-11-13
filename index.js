@@ -18,8 +18,6 @@ main()
         console.log('connection successful');
     })
     .catch((err) => console.log(err));
-
-
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
 };
@@ -53,10 +51,9 @@ app.post("/chats", (req, res) => {
             console.log(err);
         });
     res.redirect('/chats');
-})
+});
 
 //Edit route
-
 app.get('/chats/:id/edit', async (req, res) => {
     let { id } = req.params;
     let chat = await Chat.findById(id);
@@ -64,7 +61,6 @@ app.get('/chats/:id/edit', async (req, res) => {
 })
 
 //Update route
-
 app.put("/chats/:id", async (req, res) => {
     let { id } = req.params;
     let { msg: newMsg } = req.body;
@@ -74,22 +70,18 @@ app.put("/chats/:id", async (req, res) => {
         { msg: newMsg },
         { runValidators: true, new: true }
     );
-
     console.log(updatedChat);
     res.redirect("/chats");
 
 });
 
 // destroy route
-
 app.delete('/chats/:id', async (req, res) => {
     let { id } = req.params;
     let deletedChat = await Chat.findByIdAndDelete(id);
     console.log(deletedChat);
     res.redirect('/chats');
 })
-
-
 
 app.get('/', (req, res) => {
     res.send('root is working')
