@@ -1,26 +1,9 @@
 <% layout("/layouts/boilerplate.ejs") -%>
     
-    <br/>
-    <% for(let chat of chats) { %>
-        <div class="chat">
-            <p>From : <i> <%= chat.from %></i></p>
-            <div class="msg">
-                <p>
-                    <%= chat.msg %>
-                </p>
-                <form  method="GET" action="/chats/<%= chat._id %>/edit">
-                    <button class="msg-btn">Edit</button>
-                </form >
-                <br>
-                <form  method="POST" action="/chats/<%= chat._id %>?_method=DELETE">
-                    <button class="msg-btn">Delete</button>
-                </form >
-            </div>
-            <p>Recieved by <i> <%= chat.to %></i>
-            </p>
-            <hr />
-            <p> <%= chat.created_at.toString().split(" ")[4] %> </p>
-            <p> <%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %> </p> <br />
-        </div>
-        <br> <br> 
-        <% } %>
+    
+<% for(let chat of chats) { %>
+    <div class="nametag">
+        <p><b><%= chat.from %></b></p>
+        <a href="http://localhost:8080/chats" >Message them</a>
+    </div>
+<% } %>
