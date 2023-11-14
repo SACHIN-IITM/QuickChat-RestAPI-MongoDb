@@ -29,3 +29,20 @@ h3 {
     border-radius: 10px;
 
 }
+
+.nametag{
+    border: 2px solid pink;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: x-large;
+    background-color: antiquewhite;
+    color: darkred;
+    margin-bottom: 10px;
+}
+
+.nametag a {
+    text-decoration: none;
+    
+}
