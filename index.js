@@ -18,6 +18,8 @@ main()
         console.log('connection successful');
     })
     .catch((err) => console.log(err));
+
+
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
 };
@@ -25,8 +27,9 @@ async function main() {
 app.get('/chats', async (req, res) => {
     let chats = await Chat.find();
     console.log(chats);
-    res.render('index.ejs', { chats });
+    res.render('chats.ejs', { chats });
 })
+
 
 //New Chats
 app.get('/chats/new', (req, res) => {
@@ -51,9 +54,10 @@ app.post("/chats", (req, res) => {
             console.log(err);
         });
     res.redirect('/chats');
-});
+})
 
 //Edit route
+
 app.get('/chats/:id/edit', async (req, res) => {
     let { id } = req.params;
     let chat = await Chat.findById(id);
@@ -61,6 +65,7 @@ app.get('/chats/:id/edit', async (req, res) => {
 })
 
 //Update route
+
 app.put("/chats/:id", async (req, res) => {
     let { id } = req.params;
     let { msg: newMsg } = req.body;
@@ -70,12 +75,14 @@ app.put("/chats/:id", async (req, res) => {
         { msg: newMsg },
         { runValidators: true, new: true }
     );
+
     console.log(updatedChat);
     res.redirect("/chats");
 
 });
 
 // destroy route
+
 app.delete('/chats/:id', async (req, res) => {
     let { id } = req.params;
     let deletedChat = await Chat.findByIdAndDelete(id);
@@ -83,8 +90,11 @@ app.delete('/chats/:id', async (req, res) => {
     res.redirect('/chats');
 })
 
-app.get('/', (req, res) => {
-    res.send('root is working')
+
+
+app.get('/',async (req, res) => {
+    let chats = await Chat.find();
+    res.render("index.ejs",{chats});
 })
 
 app.listen(8080, () => {
