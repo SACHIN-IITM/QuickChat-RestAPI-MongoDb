@@ -1,13 +1,12 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 
+
 <br/>
     <% for(let chat of chats) { %>
         <div class="chat">
             <p>From : <i> <%= chat.from %></i></p>
             <div class="msg">
-                <p>
-                    <%= chat.msg %>
-                </p>
+                <p><%= chat.msg %></p>
                 <form  method="GET" action="/chats/<%= chat._id %>/edit">
                     <button class="msg-btn">Edit</button>
                 </form >
@@ -16,11 +15,10 @@
                     <button class="msg-btn">Delete</button>
                 </form >
             </div>
-            <p>Recieved by <i> <%= chat.to %></i>
-            </p>
+            <p>Recieved by <i> <%= chat.to %></i></p>
             <hr />
             <p> <%= chat.created_at.toString().split(" ")[4] %> </p>
             <p> <%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %> </p> <br />
         </div>
         <br> <br> 
-        <% } %>
+    <% } %>
