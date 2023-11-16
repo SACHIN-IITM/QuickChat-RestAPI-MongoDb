@@ -1,8 +1,8 @@
 <% layout("/layouts/boilerplate.ejs") -%>
 
-    <h3>Edit your chat: <%= chat._id %> </h3>
-    <p>This chat was sent from <b><%= chat.from %></b> to <b><%= chat.to%></b> </p>
-    <form method="POST" action="/chats/<%= chat._id %>?_method=PUT">
-        <textarea name="msg" rows="10" cols="50"> <%= chat.msg %> </textarea>
-        <button>Edit</button>
-    </form>
+<h3>Edit your chat: <%= chat._id %> </h3>
+<p>This chat was sent from <b><%= chat.from %></b> to <b><%= chat.to%></b> </p>
+<form method="POST" action="/chats/<%= chat._id %>?_method=PUT">
+    <textarea name="msg" rows="10" cols="50"> <%= chat.msg %> </textarea>
+    <button>Edit</button>
+</form>
